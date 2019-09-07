@@ -19,12 +19,17 @@ defmodule TomlConfigProviderTest do
       ],
       my_app: [
         hosting_env: "foo",
-        another_key: "value"
+        another_key: "value",
+        test_url: URI.parse("http://myapp.com")
       ]
     ]
 
     @merged_config [
-      my_app: [another_key: "value", hosting_env: "example"],
+      my_app: [
+        another_key: "value",
+        test_url: URI.parse("http://myapp.com"),
+        hosting_env: "example"
+      ],
       sentry: [
         dsn: "https://token@sentry.myurl.com",
         enable_source_code_context: true,
