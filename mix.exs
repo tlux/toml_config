@@ -23,7 +23,8 @@ defmodule TomlConfigProvider.MixProject do
   end
 
   defp description do
-    "A TOML config provider that works with mix release."
+    "A config provider to read TOML configuration files that works with " <>
+      "Elixir (1.9+) releases."
   end
 
   defp elixirc_paths(:test), do: ["lib", "test/support"]
