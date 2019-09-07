@@ -1,0 +1,12 @@
+[my_app]
+hosting_env = "example"
+
+[sentry]
+dsn = "https://token@sentry.myurl.com"
+environment_name = "example"
+included_environments = "example"
+root_source_code_path = "/app/example"
+enable_source_code_context = true
+
+  [sentry.hackney_opts.ssl_options]
+  cacertfile = "/path/to/getsentry.pem"

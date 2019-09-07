@@ -1,18 +1,45 @@
 defmodule TomlConfigProvider do
   @moduledoc """
-  Documentation for TomlConfigProvider.
+  A custom config provider to load TOML files for configuration.
   """
 
-  @doc """
-  Hello world.
+  @behaviour Config.Provider
 
-  ## Examples
+  @impl true
+  def init(opts), do: opts
 
-      iex> TomlConfigProvider.hello()
-      :world
+  @impl true
+  def load(config, opts) do
+    {:ok, _} = Application.ensure_all_started(:toml)
 
-  """
-  def hello do
-    :world
+    {path, decode_opts} = Keyword.pop(opts, :path)
+    decode_opts = Keyword.put(decode_opts, :keys, :atoms)
+
+    data =
+      path
+      |> resolve_path()
+      |> Path.expand()
+      |> Toml.decode_file!(decode_opts)
+      |> deep_convert_keyword()
+
+    Config.Reader.merge(config, data)
   end
+
+  defp resolve_path({:system, varname, filename}) do
+    varname
+    |> System.fetch_env!()
+    |> Path.join(filename)
+  end
+
+  defp resolve_path(path) when is_binary(path), do: path
+
+  defp deep_convert_keyword(%_struct{} = term), do: term
+
+  defp deep_convert_keyword(map) when is_map(map) do
+    Keyword.new(map, fn {key, value} ->
+      {key, deep_convert_keyword(value)}
+    end)
+  end
+
+  defp deep_convert_keyword(term), do: term
 end
