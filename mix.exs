@@ -12,7 +12,15 @@ defmodule TomlConfigProvider.MixProject do
       test_coverage: [tool: ExCoveralls],
       package: package(),
       elixirc_paths: elixirc_paths(Mix.env()),
-      description: description()
+      description: description(),
+
+      # Docs
+      name: "TOML Config Provider",
+      source_url: "https://github.com/tlux/toml_config_provider",
+      docs: [
+        main: "readme",
+        extras: ["README.md"]
+      ]
     ]
   end
 
