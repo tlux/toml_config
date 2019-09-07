@@ -1,5 +1,8 @@
 # TOML Config Provider
 
+[![Build Status](https://travis-ci.org/tlux/toml_config.svg?branch=master)](https://travis-ci.org/tlux/toml_config)
+[![Hex.pm](https://img.shields.io/hexpm/v/toml_config.svg)](https://hex.pm/packages/toml_config)
+
 A config provider to read [TOML](https://github.com/toml-lang/toml)
 configuration files that works with Elixir (1.9+) releases.
 
