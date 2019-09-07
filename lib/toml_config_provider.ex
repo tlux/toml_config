@@ -18,14 +18,26 @@ defmodule TomlConfigProvider do
         ]
       ]
 
-  Or you can read the config path from a specified environment variable. Booting
-  the application fails if the environment variable is undefined.
+  Or you can read the config directory or path from a specified environment
+  variable. Booting the application fails if the specified environment variable
+  is undefined.
 
       releases: [
         my_app: [
           config_providers: [
             {TomlConfigProvider,
              path: {:system, "RELEASE_CONFIG_DIR", "my_app.toml"}}
+          ],
+          ...
+        ]
+      ]
+
+  Or:
+
+      releases: [
+        my_app: [
+          config_providers: [
+            {TomlConfigProvider, path: {:system, "RELEASE_CONFIG_PATH"}}
           ],
           ...
         ]
@@ -42,8 +54,6 @@ defmodule TomlConfigProvider do
   """
 
   @behaviour Config.Provider
-
-  alias TomlConfigProvider.FileNotFoundError
 
   @impl true
   def init(opts), do: opts

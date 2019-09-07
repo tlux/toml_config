@@ -41,8 +41,9 @@ releases: [
 ]
 ```
 
-Or you can read the config path from a specified environment variable. Booting
-the application fails if the environment variable is undefined.
+Or you can read the config directory or path from a specified environment
+variable. Booting the application fails if the specified environment variable is
+undefined.
 
 ```elixir
 releases: [
@@ -50,6 +51,19 @@ releases: [
     config_providers: [
       {TomlConfigProvider,
        path: {:system, "RELEASE_CONFIG_DIR", "my_app.toml"}}
+    ],
+    ...
+  ]
+]
+```
+
+Or:
+
+```elixir
+releases: [
+  my_app: [
+    config_providers: [
+      {TomlConfigProvider, path: {:system, "RELEASE_CONFIG_PATH"}}
     ],
     ...
   ]
