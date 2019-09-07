@@ -42,6 +42,15 @@ defmodule TomlConfigProviderTest do
     end
 
     test "merge example config with env var path" do
+      :ok = System.put_env("MY_CONFIG_PATH", "test/fixtures/config.toml")
+      on_exit(fn -> System.delete_env("MY_CONFIG_PATH") end)
+
+      opts = TomlConfigProvider.init(path: {:system, "MY_CONFIG_PATH"})
+
+      assert TomlConfigProvider.load(@config, opts) == @merged_config
+    end
+
+    test "merge example config with env var path and filename" do
       :ok = System.put_env("MY_CONFIG_PATH", "test/fixtures")
       on_exit(fn -> System.delete_env("MY_CONFIG_PATH") end)
 
@@ -51,6 +60,22 @@ defmodule TomlConfigProviderTest do
         )
 
       assert TomlConfigProvider.load(@config, opts) == @merged_config
+    end
+
+    test "config file with invalid TOML data" do
+      opts = TomlConfigProvider.init(path: "test/fixtures/invalid_config.toml")
+
+      assert_raise Toml.Error, fn ->
+        TomlConfigProvider.load(@config, opts)
+      end
+    end
+
+    test "config file not found" do
+      opts = TomlConfigProvider.init(path: "test/fixtures/not_found.toml")
+
+      assert_raise File.Error, ~r/could not read file/, fn ->
+        TomlConfigProvider.load(@config, opts)
+      end
     end
 
     test "apply transforms" do

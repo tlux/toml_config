@@ -43,6 +43,8 @@ defmodule TomlConfigProvider do
 
   @behaviour Config.Provider
 
+  alias TomlConfigProvider.FileNotFoundError
+
   @impl true
   def init(opts), do: opts
 
@@ -67,6 +69,10 @@ defmodule TomlConfigProvider do
     varname
     |> System.fetch_env!()
     |> Path.join(filename)
+  end
+
+  defp resolve_path({:system, varname}) do
+    System.fetch_env!(varname)
   end
 
   defp resolve_path(path) when is_binary(path), do: path
