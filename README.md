@@ -83,6 +83,22 @@ config_providers: [
 ]
 ```
 
+## Other Implementations
+
+### `toml` Config Provider
+
+The [toml](https://hex.pm/packages/toml) package brings it's own config provider
+that unfortunately only works with
+[distellery](https://github.com/bitwalker/distillery) releases at the moment.
+
+### `toml_config_provider`
+
+Unlike [toml_config_provider](https://hex.pm/packages/toml_config_provider),
+this library allows specifying the location of the config file through
+environment variables. This is quite useful when you have multiple (slightly
+different) instances of a release running on the same machine, such as staging
+and production environments. Additionally, we allow custom transform modules.
+
 ## Docs
 
 Documentation can be generated with
