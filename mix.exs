@@ -3,7 +3,7 @@ defmodule TomlConfigProvider.MixProject do
 
   def project do
     [
-      app: :toml_config_provider,
+      app: :toml_config,
       version: "0.1.0",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
@@ -16,7 +16,7 @@ defmodule TomlConfigProvider.MixProject do
 
       # Docs
       name: "TOML Config Provider",
-      source_url: "https://github.com/tlux/toml_config_provider",
+      source_url: "https://github.com/tlux/toml_config",
       docs: [
         main: "readme",
         extras: ["README.md"]
@@ -42,7 +42,7 @@ defmodule TomlConfigProvider.MixProject do
     [
       licenses: ["MIT"],
       links: %{
-        "GitHub" => "https://github.com/tlux/toml_config_provider"
+        "GitHub" => "https://github.com/tlux/toml_config"
       }
     ]
   end

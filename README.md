@@ -13,13 +13,13 @@ library.
 
 ## Installation
 
-The package can be installed by adding `toml_config_provider` to your list of
+The package can be installed by adding `toml_config` to your list of
 dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:toml_config_provider, "~> 0.1"}
+    {:toml_config, "~> 0.1"}
   ]
 end
 ```
@@ -73,5 +73,5 @@ config_providers: [
 
 Documentation can be generated with
 [ExDoc](https://github.com/elixir-lang/ex_doc) and is published on
-[HexDocs](https://hexdocs.pm/toml_config_provider).
+[HexDocs](https://hexdocs.pm/toml_config).
 
