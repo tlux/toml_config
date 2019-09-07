@@ -10,21 +10,34 @@ defmodule TomlConfigProvider.MixProject do
       deps: deps(),
       dialyzer: [plt_add_apps: [:ex_unit, :mix]],
       test_coverage: [tool: ExCoveralls],
-      elixirc_paths: elixirc_paths(Mix.env())
+      package: package(),
+      elixirc_paths: elixirc_paths(Mix.env()),
+      description: description()
     ]
   end
 
-  # Run "mix help compile.app" to learn about applications.
   def application do
     [
       extra_applications: [:logger]
     ]
   end
 
+  defp description do
+    "A TOML config provider that works with mix release."
+  end
+
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
 
-  # Run "mix help deps" to learn about dependencies.
+  defp package do
+    [
+      licenses: ["MIT"],
+      links: %{
+        "GitHub" => "https://github.com/tlux/toml_config_provider"
+      }
+    ]
+  end
+
   defp deps do
     [
       {:credo, "~> 1.1.1", only: [:dev, :test], runtime: false},
