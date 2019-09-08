@@ -1,6 +1,7 @@
 # TOML Config Provider
 
 [![Build Status](https://travis-ci.org/tlux/toml_config.svg?branch=master)](https://travis-ci.org/tlux/toml_config)
+[![Coverage Status](https://coveralls.io/repos/github/tlux/toml_config/badge.svg?branch=master)](https://coveralls.io/github/tlux/toml_config?branch=master)
 [![Hex.pm](https://img.shields.io/hexpm/v/toml_config.svg)](https://hex.pm/packages/toml_config)
 
 A config provider to read [TOML](https://github.com/toml-lang/toml)
