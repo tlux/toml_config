@@ -23,7 +23,7 @@ dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:toml_config, "~> 0.1"}
+    {:toml_config, "~> 0.1", only: :prod}
   ]
 end
 ```
